@@ -19,7 +19,7 @@ def main():
     driver = importlib.import_module('glucometerutils.drivers.' + 'fsprecisionneo')
 
     while True:
-        name = '/dev/hidraw {0}'.format(counter % 4)
+        name = '/dev/hidraw{0}'.format(counter % 4)
         try:
             device = driver.Device(name)
             break
@@ -42,7 +42,7 @@ def main():
 
     for reading in readings:
         print(reading.as_csv(unit))
-        if reading.timestamp >= time - timedelta(minutes = 5):
+        if reading.timestamp >= time - timedelta(days=2, minutes = 5):
             message = 'Резултат {0}'.format(reading.get_value_as(unit))
             counter += 1
    
@@ -54,7 +54,7 @@ def main():
     print(device.get_datetime())
     print(message)
     
-    # os.system('espeak -vbg+f2 -k4 "{0}"'.format(message))
+    os.system('espeak -vbg+f2 -k4 "{0}"'.format(message))
     
     device.disconnect()
 
