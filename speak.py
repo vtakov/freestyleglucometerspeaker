@@ -16,7 +16,7 @@ from glucometerutils import exceptions
 
 def main():
     counter = 0
-    driver = importlib.import_module('glucometerutils.drivers.' + 'fsprecisionneo')
+    driver = importlib.import_module('glucometerutils.drivers.fsprecisionneo')
 
     while True:
         name = '/dev/hidraw{0}'.format(counter % 4)
